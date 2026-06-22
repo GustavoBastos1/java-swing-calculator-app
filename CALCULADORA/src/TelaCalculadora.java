@@ -101,6 +101,7 @@ public class TelaCalculadora extends JFrame{
         });btnC.addActionListener(e -> {
             numero1=0;
             numero2 = 0;
+            resultado = 0;
             operation = "";
             visor.setText("");
         });
@@ -112,17 +113,17 @@ public class TelaCalculadora extends JFrame{
         btnIgual.addActionListener(e -> {
             numero2 = Double.parseDouble(visor.getText());
             if (operation.equals("x")) {
-                    resultado = Calculadora.multiplicacao(numero1,numero2);
+                    resultado += Calculadora.multiplicacao(numero1,numero2);
                     visor.setText(String.valueOf(resultado));
             } else if (operation.equals("+")){
-                resultado = Calculadora.soma(numero1,numero2);
+                resultado += Calculadora.soma(numero1,numero2);
                 visor.setText(String.valueOf(resultado));
             } else if (operation.equals("-")){
-                resultado = Calculadora.subtracao(numero1,numero2);
+                resultado += Calculadora.subtracao(numero1,numero2);
                 visor.setText(String.valueOf(resultado));
 
             }else if (operation.equals("/")) {
-                resultado = Calculadora.divisao(numero1,numero2);
+                resultado += Calculadora.divisao(numero1,numero2);
                 visor.setText(String.valueOf(resultado));
             }
         });
@@ -135,15 +136,20 @@ public class TelaCalculadora extends JFrame{
             }
         });
         btnMenos.addActionListener(e -> {
-            numero1 = Double.parseDouble(visor.getText());
-            operation = "-";
-            visor.setText("");
+            if (visor.getText().equals(""))  JOptionPane.showMessageDialog(this, "Digite um número primeiro!");
+            else {
+                numero1 = Double.parseDouble(visor.getText());
+                operation = "-";
+                visor.setText("");
+            }
         });
         btnMult.addActionListener(e -> {
-
-            numero1 = Double.parseDouble(visor.getText());
-            operation = "x";
-            visor.setText("");
+            if (visor.getText().equals(""))  JOptionPane.showMessageDialog(this, "Digite um número primeiro!");
+            else {
+                numero1 = Double.parseDouble(visor.getText());
+                operation = "x";
+                visor.setText("");
+            }
         });
 
 
